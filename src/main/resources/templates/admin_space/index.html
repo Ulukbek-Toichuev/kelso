@@ -107,9 +107,9 @@
 
             <tbody>
             <tr th:each="category: ${categories}">
-                <td th:text="${category.category_name}"></td>
+                <td th:text="${category.category_id}"></td>
                 <td>
-                    <a th:href="@{/delete-category/{id}(id=${category.category_id})}">Delete</a>
+                    <a th:href="@{/admin/delete/{id}(id=${category.category_id}) }">Delete</a>
                     <a th:href="@{/update-category/{id}(id=${category.category_id})}">Update</a>
                 </td>
             </tr>
@@ -117,6 +117,7 @@
         </table>
     </div>
 
+    <a href="/">main</a>
     <a href="/logout">logout</a>
 
 </main>

@@ -1,10 +1,78 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
+<header>
+    <!-- header content, such as logo and navigation menu -->
+</header>
 
+<main>
+
+    <div class="container">
+        <div class="book_title">
+            <h3 th:text="${book.book_title}"></h3>
+        </div>
+        <hr>
+
+        <div class="book_author">
+            <h3 th:text="${book.book_author.author_name}"></h3>
+        </div>
+        <hr>
+
+        <div class="book_code">
+            <p th:text="${book.book_code}"></p>
+        </div>
+        <hr>
+
+        <div class="book_publisher">
+            <p th:text="${book.book_publisher}"></p>
+        </div>
+        <hr>
+
+        <div class="book_description">
+            <p th:text="${book.book_description}"></p>
+        </div>
+        <hr>
+
+        <div class="book_description">
+            <span th:each="categories: ${booksCategory}">
+                <span th:if="${categories.bookId.book_id == book.book_id}">
+                    <p th:text="${categories.categoryId.category_name}"></p>
+                </span>
+            </span>
+        </div>
+        <hr>
+
+        <div class="book_details">
+            <span th:if="${metadata != null}">
+                <p th:text="${metadata.isbn}"></p>
+                <p th:text="${metadata.price}"></p>
+                <p th:text="${metadata.pageCount}"></p>
+                <p th:text="${metadata.readingAge}"></p>
+            </span>
+            <span th:if="${metadata == null}">NULL</span>
+        </div>
+
+        <span th:if="${role == 'ROLE_ADMIN'}">
+            <a href="/update/{id}">update book</a>
+        </span>
+
+    </div>
+
+    <a href="/">main</a>
+    <a href="/logout">logout</a>
+
+</main>
+
+<aside>
+    <!-- optional sidebar content, such as advertisements or related content -->
+</aside>
+
+<footer>
+    <!-- footer content, such as copyright information or site links -->
+</footer>
 </body>
 </html>

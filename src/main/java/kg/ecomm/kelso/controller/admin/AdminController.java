@@ -10,24 +10,26 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
-    @Autowired
-    private BookService<TestInterface> bookService;
-    @Autowired
-    private JpaUserDetailsService jpaUserDetailsService;
 
     Logger logger = LoggerFactory.getLogger(AdminController.class);
+
+    private final BookService<TestInterface> bookService;
+    private final JpaUserDetailsService jpaUserDetailsService;
+
+    public AdminController(BookService<TestInterface> bookService, JpaUserDetailsService jpaUserDetailsService) {
+        this.bookService = bookService;
+        this.jpaUserDetailsService = jpaUserDetailsService;
+    }
 
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping()
     public String getMainAdminPage(Model model){
+        logger.info(Book.class.getSimpleName());
 
         model.addAttribute("users", jpaUserDetailsService.getAllUsers());
         model.addAttribute("authors", bookService.getAllAuthors());
@@ -59,39 +61,94 @@ public class AdminController {
     @PostMapping("/save-author")
     public String saveAuthor(@ModelAttribute("author") Author author){
         bookService.save(author);
-        return "redirect:/";
+        return "redirect:/admin/add";
     }
 
     @PostMapping("/save-book")
     public String saveBook(@ModelAttribute("book") Book book){
         bookService.save(book);
-        return "redirect:/";
+        return "redirect:/admin/add";
     }
 
     @PostMapping("/save-category")
     public String saveCategory(@ModelAttribute("category") Category category){
-        logger.info(category.toString());
         bookService.save(category);
-        return "redirect:/";
+        return "redirect:/admin/add";
     }
 
     @PostMapping("/save-book-category")
     public String saveBooksCategory(@ModelAttribute("booksCategory") BooksCategory booksCategory){
         bookService.save(booksCategory);
-        return "redirect:/";
+        return "redirect:/admin/add";
     }
 
     @PostMapping("/save-metadata")
     public String saveMetadata(@ModelAttribute("metadata") Metadata metadata){
         logger.info(metadata.toString());
         bookService.save(metadata);
-        return "redirect:/";
+        return "redirect:/admin/add";
     }
 
     @PostMapping("/save-photo")
     public String savePhoto(@ModelAttribute("photo") Photo photo){
         bookService.save(photo);
-        return "redirect:/";
+        return "redirect:/admin/add";
+    }
+
+    @GetMapping("/book/{id}")
+    public String updateBook(@PathVariable("id") long id, Model model){
+
+
+
+        return null;
+    }
+
+    @GetMapping("/delete-book/{id}")
+    public String deleteBook(@PathVariable("id") long id){
+
+        bookService.deleteBook(id);
+
+        return "redirect:/admin";
+    }
+
+    @GetMapping("/delete-author/{id}")
+    public String deleteAuthor(@PathVariable("id") long id){
+
+        bookService.deleteAuthor(id);
+
+        return "redirect:/admin";
+    }
+
+    @GetMapping("/delete-category/{id}")
+    public String deleteCategory(@PathVariable("id") long id){
+
+        bookService.deleteCategory(id);
+
+        return "redirect:/admin";
+    }
+
+    @GetMapping("/delete-book-category/{id}")
+    public String deleteBooksCategory(@PathVariable("id") long id){
+
+        bookService.deleteBooksCategory(id);
+
+        return "redirect:/admin";
+    }
+
+    @GetMapping("/delete-metadata/{id}")
+    public String deleteMetadata(@PathVariable("id") long id){
+
+        bookService.deleteMetadata(id);
+
+        return "redirect:/admin";
+    }
+
+    @GetMapping("/delete-photo/{id}")
+    public String deletePhoto(@PathVariable("id") long id){
+
+        bookService.deletePhoto(id);
+
+        return "redirect:/admin";
     }
 
 }

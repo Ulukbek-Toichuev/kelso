@@ -1,7 +1,10 @@
 package kg.ecomm.kelso.service.book;
 
+import kg.ecomm.kelso.controller.admin.AdminController;
 import kg.ecomm.kelso.entity.book.*;
 import kg.ecomm.kelso.repository.book.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -11,6 +14,7 @@ import java.util.Optional;
 @Service
 @Transactional
 public class BookService <T>{
+    Logger logger = LoggerFactory.getLogger(AdminController.class);
 
     private final BookRepository bookRepository;
     private final AuthorRepository authorRepository;
@@ -75,6 +79,17 @@ public class BookService <T>{
         }
     }
 
+    public Author getAuthorById(long id){
+        Optional<Author> authorOptional = authorRepository.findById(id);
+        Author author = null;
+        if (authorOptional.isPresent())
+            author = authorOptional.get();
+        else
+            throw new RuntimeException(
+                    "Book not found for id: " + id);
+        return author;
+    }
+
     public Book getBookById(long id) {
         Optional<Book> bookOptional = bookRepository.findById(id);
         Book book = null;
@@ -133,4 +148,34 @@ public class BookService <T>{
                     "Category not found for id: " + id);
         return photo;
     }
+
+    public Metadata getMetadataByBookId(long id){
+        return metadataRepository.findMetadataByBookId(id);
+    }
+
+
+    public void deleteBook(long id){
+        bookRepository.deleteById(id);
+    }
+
+    public void deleteAuthor(long id){
+        authorRepository.deleteById(id);
+    }
+
+    public void deleteCategory(long id){
+        categoryRepository.deleteById(id);
+    }
+
+    public void deleteBooksCategory(long id){
+        booksCategoryRepository.deleteById(id);
+    }
+
+    public void deleteMetadata(long id){
+        metadataRepository.deleteById(id);
+    }
+
+    public void deletePhoto(long id){
+        photoRepository.deleteById(id);
+    }
+
 }
