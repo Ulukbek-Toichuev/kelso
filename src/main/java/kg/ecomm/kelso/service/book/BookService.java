@@ -30,9 +30,7 @@ public class BookService <T>{
         this.photoRepository = photoRepository;
     }
 
-    public List<Book> getAllBooks(){
-        return bookRepository.findAll();
-    }
+    public List<Book> getAllBooks(){return bookRepository.findAll();}
     public List<Author> getAllAuthors(){
         return authorRepository.findAll();
     }
@@ -49,41 +47,33 @@ public class BookService <T>{
         return photoRepository.findAll();
     }
 
-    public void save(Author author){
-        authorRepository.save(author);
-    }
+    public void save(T value){
+        String className = value.getClass().getSimpleName();
 
-    public void genericSave(T value){
-        if (value.getClass().getSimpleName().equals("Book")){
-            Book book = (Book) value;
-            book.setBook_code(new BookMiddleware(bookRepository).getNewBookCode());
-            bookRepository.save(book);
-        } else if (value.getClass().getSimpleName().equals("Category")) {
-            categoryRepository.save((Category) value);
+        switch (className){
+            case "Author":
+                authorRepository.save((Author) value);
+                break;
+            case "Book":
+                Book book = (Book) value;
+                book.setBook_code(new BookMiddleware(bookRepository).getNewBookCode());
+                bookRepository.save(book);
+                break;
+            case "Category":
+                categoryRepository.save((Category) value);
+                break;
+            case "BooksCategory":
+                booksCategoryRepository.save((BooksCategory) value);
+                break;
+            case "Metadata":
+                metadataRepository.save((Metadata) value);
+                break;
+            case "Photo":
+                photoRepository.save((Photo) value);
+            default:
+                break;
         }
     }
-    public void save(Book book){
-
-        book.setBook_code(new BookMiddleware(bookRepository).getNewBookCode());
-        bookRepository.save(book);
-    }
-
-    public void save(Category category){
-        categoryRepository.save(category);
-    }
-
-    public void save(BooksCategory booksCategory){
-        booksCategoryRepository.save(booksCategory);
-    }
-
-    public void save(Metadata metadata){
-        metadataRepository.save(metadata);
-    }
-
-    public void save(Photo photo){
-        photoRepository.save(photo);
-    }
-
 
     public Book getBookById(long id) {
         Optional<Book> bookOptional = bookRepository.findById(id);

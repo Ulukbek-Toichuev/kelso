@@ -1,7 +1,6 @@
 package kg.ecomm.kelso.controller.admin;
 
 
-import kg.ecomm.kelso.controller.main.MainController;
 import kg.ecomm.kelso.entity.book.*;
 import kg.ecomm.kelso.service.book.BookService;
 import kg.ecomm.kelso.service.user.JpaUserDetailsService;
@@ -20,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/admin")
 public class AdminController {
     @Autowired
-    private BookService bookService;
+    private BookService<TestInterface> bookService;
     @Autowired
     private JpaUserDetailsService jpaUserDetailsService;
 
@@ -72,7 +71,7 @@ public class AdminController {
     @PostMapping("/save-category")
     public String saveCategory(@ModelAttribute("category") Category category){
         logger.info(category.toString());
-        bookService.genericSave(category);
+        bookService.save(category);
         return "redirect:/";
     }
 

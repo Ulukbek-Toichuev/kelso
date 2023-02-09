@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "authors")
-public class Author {
+public class Author implements TestInterface {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

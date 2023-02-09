@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "metadatas")
-public class Metadata {
+public class Metadata implements TestInterface {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
