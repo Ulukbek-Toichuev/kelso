@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Kelso</title>
+</head>
+<body>
+<header>
+    <!-- header content, such as logo and navigation menu -->
+</header>
+
+<main>
+    <div class="container">
+
+        <hr>
+        <ul>
+            <li> <a href="/admin/add">new entities</a></li>
+        </ul>
+
+        <hr>
+        <h3>List of users</h3>
+        <table>
+            <thead>
+            <tr>
+                <th>name</th>
+                <th>phone_num</th>
+                <th>role</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="user: ${users}">
+                <td th:text="${user.username}"></td>
+                <td th:text="${user.usersPhoneNum}"></td>
+                <td th:text="${user.userRole}"></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <hr>
+        <h3>List of books</h3>
+        <table>
+            <thead>
+            <tr>
+                <th>photo</th>
+                <th>title</th>
+                <th>author</th>
+                <th>category</th>
+                <th>action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="book: ${books}">
+                <td th:text="${book.book_title}"></td>
+                <td>
+                    <span th:if="${book.book_author == null}">NULL</span>
+                    <span th:if="${book.book_author != null}">
+                            <p th:text="${book.book_author.author_name}"></p>
+                        </span>
+                </td>
+                <td>
+                    <table>
+                        <tr th:each="category: ${booksCategory}">
+                            <td>
+                                   <span th:if="${category.bookId.book_id == book.book_id}">
+                                       <p th:text="${category.categoryId.category_name}"></p>
+                                   </span>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+
+                <td>
+                    <a th:href="@{/delete-book/{id}(id=${book.book_id})}">Delete</a>
+                    <a th:href="@{/books/{id}(id=${book.book_id})}">Detail</a>
+                    <a th:href="@{/update-book/{id}(id=${book.book_id})}">Update</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <hr>
+        <h3>List of authors</h3>
+        <table>
+            <thead>
+            <tr>
+                <th>author_name</th>
+                <th>about_author</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="author: ${authors}">
+                <td th:text="${author.author_name}"></td>
+                <td th:text="${author.about_author}"></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <hr>
+        <h3>List of categories</h3>
+        <table>
+            <thead>
+            <tr>
+                <th>Category</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr th:each="category: ${categories}">
+                <td th:text="${category.category_name}"></td>
+                <td>
+                    <a th:href="@{/delete-category/{id}(id=${category.category_id})}">Delete</a>
+                    <a th:href="@{/update-category/{id}(id=${category.category_id})}">Update</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <a href="/logout">logout</a>
+
+</main>
+
+<aside>
+    <!-- optional sidebar content, such as advertisements or related content -->
+</aside>
+
+<footer>
+    <!-- footer content, such as copyright information or site links -->
+</footer>
+</body>
+</html>

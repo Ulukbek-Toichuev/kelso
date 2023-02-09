@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Kelso</title>
+</head>
+<body>
+<header>
+    <!-- header content, such as logo and navigation menu -->
+</header>
+
+<main>
+    <div th:if="${role == 'ROLE_ADMIN'}">
+        <p>GOVNO</p>
+    </div>
+    <div class="container">
+        <a href="/admin">to admin page</a>
+        <a href="/user">to user page</a>
+        <a href="/register">registration</a>
+        <a href="/login">login</a>
+    </div>
+
+    <div class="container">
+        <hr>
+        <h3>List of books</h3>
+        <table>
+            <thead>
+            <tr>
+                <th>title</th>
+                <th>author</th>
+                <th>category</th>
+                <th>action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="book: ${books}">
+                <td th:text="${book.book_title}"></td>
+                <td>
+                    <span th:if="${book.book_author == null}">NULL</span>
+                    <span th:if="${book.book_author != null}">
+                            <p th:text="${book.book_author.author_name}"></p>
+                        </span>
+                </td>
+                <td>
+                    <table>
+                        <tr th:each="category: ${booksCategory}">
+                            <td>
+                                   <span th:if="${category.bookId.book_id == book.book_id}">
+                                       <p th:text="${category.categoryId.category_name}"></p>
+                                   </span>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+
+                <td>
+                    <a th:href="@{/books/{id}(id=${book.book_id})}">Detail</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <a href="/logout">logout</a>
+
+</main>
+
+<aside>
+    <!-- optional sidebar content, such as advertisements or related content -->
+</aside>
+
+<footer>
+    <!-- footer content, such as copyright information or site links -->
+</footer>
+</body>
+</html>
