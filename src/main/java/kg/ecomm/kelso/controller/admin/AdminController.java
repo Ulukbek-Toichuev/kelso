@@ -108,7 +108,7 @@ public class AdminController {
 
         bookService.deleteBook(id);
 
-        return "redirect:/admin";
+        return "redirect:/";
     }
 
     @GetMapping("/delete-author/{id}")

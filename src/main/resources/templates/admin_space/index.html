@@ -70,9 +70,9 @@
                 </td>
 
                 <td>
-                    <a th:href="@{/delete-book/{id}(id=${book.book_id})}">Delete</a>
+                    <a th:href="@{admin/delete-book/{id}(id=${book.book_id})}">Delete</a>
                     <a th:href="@{/books/{id}(id=${book.book_id})}">Detail</a>
-                    <a th:href="@{/update-book/{id}(id=${book.book_id})}">Update</a>
+                    <a th:href="@{admin/update-book/{id}(id=${book.book_id})}">Update</a>
                 </td>
             </tr>
             </tbody>
@@ -107,10 +107,10 @@
 
             <tbody>
             <tr th:each="category: ${categories}">
-                <td th:text="${category.category_id}"></td>
+                <td th:text="${category.category_name}"></td>
                 <td>
-                    <a th:href="@{/admin/delete/{id}(id=${category.category_id}) }">Delete</a>
-                    <a th:href="@{/update-category/{id}(id=${category.category_id})}">Update</a>
+                    <a th:href="@{/admin/delete-category/{id}(id=${category.category_id}) }">Delete</a>
+                    <a th:href="@{/admin/update-category/{id}(id=${category.category_id})}">Update</a>
                 </td>
             </tr>
             </tbody>

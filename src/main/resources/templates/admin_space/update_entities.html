@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>Kelso</title>
+</head>
+<body>
+<header>
+  <!-- header content, such as logo and navigation menu -->
+</header>
+
+<main>
+
+  <div class="container">
+
+    <hr>
+    <h3>Add new author</h3>
+
+    <form th:action="@{/admin/save-author}" method="post" th:object="${author}">
+      <label for="author_name">name:
+        <input id="author_name" type="text" name="author_name" th:value="*{author_name}">
+      </label><br>
+      <label for="about_author">about:
+        <input id="about_author" type="text" name="about_author" th:value="*{about_author}">
+      </label><br>
+
+      <button type="submit">create</button>
+    </form>
+
+  </div>
+
+  <div class="container">
+
+    <hr>
+    <h3>Add new book</h3>
+
+    <form th:action="@{/admin/save-book}" method="post" th:object="${book}">
+
+      <label for="book_title">title:
+        <input type="text" class="form-control" id="book_title" th:field="*{book_title}">
+      </label><br>
+
+      <label for="book_author">author:
+        <select class="form-controller" id="book_author" th:field="*{book_author}">
+          <option th:each="id: ${authors}" th:value="${id.id}" th:text="${id.author_name}"></option>
+        </select></label><br>
+
+      <label for="book_publisher">publisher:
+        <input type="text" class="form-control" id="book_publisher" th:field="*{book_publisher}">
+      </label><br>
+
+      <label for="book_description">description:
+        <input type="text" class="form-control" id="book_description" th:field="*{book_description}">
+      </label><br>
+
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+  </div>
+
+  <div class="container">
+
+    <hr>
+    <h3>Add new category</h3>
+
+    <form th:action="@{/admin/save-category}" method="post" th:object="${category}">
+      <label for="category_name">name:
+        <input id="category_name" type="text" name="category_name" th:value="*{category_name}">
+      </label><br>
+
+      <button type="submit">create</button>
+    </form>
+
+  </div>
+
+  <div class="container">
+    <hr>
+    <h3>Add categories for book</h3>
+
+    <form th:action="@{/admin/save-book-category}" method="post" th:object="${booksCategory}">
+      <label for="category_id"> category id:
+        <select class="category_id" id="category_id" th:field="*{categoryId}">
+          <option th:each="id: ${categories}" th:value="${id.category_id}" th:text="${id.category_name}"></option>
+        </select>
+      </label><br>
+
+      <label for="book_id">
+        <select class="book_id" id="book_id" th:field="*{bookId}">
+          <option th:each="id: ${books}" th:value="${id.book_id}" th:text="${id.book_title}"></option>
+        </select>
+      </label><br>
+      <button type="submit">create</button>
+    </form>
+
+  </div>
+
+  <div class="container">
+    <hr>
+    <h3>Add metadata for book</h3>
+
+    <form th:action="@{/admin/save-metadata}" method="post" th:object="${metadata}">
+      <label for="metadata_book_id"> book id:
+        <select class="form-controller" id="metadata_book_id" th:field="*{bookId}">
+          <option th:each="id: ${books}" th:value="${id.book_id}" th:text="${id.book_title}"></option>
+        </select>
+      </label><br>
+
+      <label for="isbn">isbn
+        <input id="isbn" type="text" name="isbn" th:value="*{isbn}">
+      </label><br>
+
+      <label for="price">price
+        <input id="price" type="text" name="price" th:value="*{price}">
+      </label><br>
+
+      <label for="availability_count">count
+        <input id="availability_count" type="text" name="availabilityCount" th:value="*{availabilityCount}">
+      </label><br>
+
+      <label for="page_count">page
+        <input id="page_count" type="text" name="pageCount" th:value="*{pageCount}">
+      </label><br>
+
+      <label for="reading_age">age
+        <input id="reading_age" type="text" name="readingAge" th:value="*{readingAge}">
+      </label><br>
+      <button type="submit">create</button>
+    </form>
+
+  </div>
+
+  <div class="container">
+    <hr>
+    <h3>Add books photo</h3>
+
+    <form th:action="@{/admin/save-photo}" method="post" th:object="${photo}">
+      <label for="photo_book_id"> book id:
+        <select class="form-controller" id="photo_book_id" th:field="*{bookId}">
+          <option th:each="id: ${books}" th:value="${id.book_id}" th:text="${id.book_title}"></option>
+        </select>
+      </label><br>
+
+      <label for="url">photo
+        <input id="url" type="text" name="photoUrl" th:value="*{photoUrl}">
+      </label><br>
+
+      <button type="submit">create</button>
+    </form>
+
+  </div>
+
+
+  <a href="/">back to main</a>
+
+</main>
+
+<aside>
+  <!-- optional sidebar content, such as advertisements or related content -->
+</aside>
+
+<footer>
+  <!-- footer content, such as copyright information or site links -->
+</footer>
+</body>
+</html>
