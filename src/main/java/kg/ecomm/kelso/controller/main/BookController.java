@@ -40,7 +40,7 @@ public class BookController {
         model.addAttribute("book", book);
         model.addAttribute("author", bookService.getAuthorById(book.getBook_author().getId()));
         model.addAttribute("booksCategory", bookService.getAllBooksCategories());
-        model.addAttribute("photos", bookService.getAllPhotos());
+        model.addAttribute("photos", bookService.getAllPhotosByBookId(id));
         model.addAttribute("metadata", bookService.getMetadataByBookId(book.getBook_id()));
 
         return "main/book";

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>update metadata</title>
+</head>
+<body>
+<header>
+    <!-- header content, such as logo and navigation menu -->
+</header>
+
+<main>
+    <div class="category">
+        <h3>update metadata</h3>
+        <h3><a href="/admin">admin page</a></h3>
+
+        <form th:action="@{/admin/update-metadata}" method="post" th:object="${metadata}">
+            <input id="metadataId" type="hidden" name="metadataId" th:value="${metadata.metadataId}" required>
+
+            <input id="bookId" type="hidden" name="bookId" th:value="${metadata.bookId.book_id}">
+
+            <label for="isbn">isbn:
+                <input id="isbn" type="text" name="isbn" th:value="${metadata.isbn}" required>
+            </label>
+
+            <label for="price">isbn:
+                <input id="price" type="text" name="price" th:value="${metadata.price}" required>
+            </label>
+
+            <label for="availabilityCount">availability count:
+                <input id="availabilityCount" type="text" name="availabilityCount" th:value="${metadata.availabilityCount}" required>
+            </label>
+
+            <label for="pageCount">page count:
+                <input id="pageCount" type="text" name="pageCount" th:value="${metadata.pageCount}" required>
+            </label>
+
+            <label for="readingAge">reading age:
+                <input id="readingAge" type="text" name="readingAge" th:value="${metadata.readingAge}" required>
+            </label>
+
+            <button type="submit">update</button>
+        </form>
+    </div>
+</main>
+
+<aside>
+    <!-- optional sidebar content, such as advertisements or related content -->
+</aside>
+
+<footer>
+    <!-- footer content, such as copyright information or site links -->
+</footer>
+</body>
+</html>

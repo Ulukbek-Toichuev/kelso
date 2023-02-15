@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>update category</title>
+</head>
+<body>
+<header>
+    <!-- header content, such as logo and navigation menu -->
+</header>
+
+<main>
+    <div class="category">
+        <h3>update category</h3>
+        <h3><a href="/admin">admin page</a></h3>
+
+        <form th:action="@{/admin/update-category}" method="post" th:object="${category}">
+            <label for="category_id" hidden>id:
+                <input id="category_id" type="hidden" name="category_id" th:value="${category.category_id}" required>
+            </label>
+            <label for="category_name">category:
+                <input id="category_name" type="text" name="category_name" th:value="${category.category_name}" required>
+            </label>
+
+            <button type="submit">update</button>
+        </form>
+    </div>
+</main>
+
+<aside>
+    <!-- optional sidebar content, such as advertisements or related content -->
+</aside>
+
+<footer>
+    <!-- footer content, such as copyright information or site links -->
+</footer>
+</body>
+</html>

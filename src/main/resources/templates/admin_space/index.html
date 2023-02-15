@@ -85,12 +85,17 @@
             <tr>
                 <th>author_name</th>
                 <th>about_author</th>
+                <th>action</th>
             </tr>
             </thead>
             <tbody>
             <tr th:each="author: ${authors}">
                 <td th:text="${author.author_name}"></td>
                 <td th:text="${author.about_author}"></td>
+                <td>
+                    <a th:href="@{/admin/delete-author/{id}(id=${author.id}) }">Delete</a>
+                    <a th:href="@{/admin/update-author/{id}(id=${author.id})}">Update</a>
+                </td>
             </tr>
             </tbody>
         </table>

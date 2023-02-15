@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>update author</title>
+</head>
+<body>
+<header>
+    <!-- header content, such as logo and navigation menu -->
+</header>
+
+<main>
+    <div class="author">
+        <h3>update author</h3>
+        <h3><a href="/admin">admin page</a></h3>
+
+        <form th:action="@{/admin/update-author}" method="post" th:object="${author}">
+            <label for="author_id" hidden>id:
+                <input id="author_id" type="hidden" name="id" th:value="${author.id}" required>
+            </label>
+
+            <label for="author_name">category:
+                <input id="author_name" type="text" name="author_name" th:value="${author.author_name}" required>
+            </label>
+
+            <label for="about_author">category:
+                <input id="about_author" type="text" name="about_author" th:value="${author.about_author}" required>
+            </label>
+
+            <button type="submit">update</button>
+        </form>
+    </div>
+</main>
+
+<aside>
+    <!-- optional sidebar content, such as advertisements or related content -->
+</aside>
+
+<footer>
+    <!-- footer content, such as copyright information or site links -->
+</footer>
+</body>
+</html>

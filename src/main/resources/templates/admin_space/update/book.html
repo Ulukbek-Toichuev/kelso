@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>update book</title>
+</head>
+<body>
+<header>
+    <!-- header content, such as logo and navigation menu -->
+</header>
+
+<main>
+    <div class="author">
+        <h3>update book</h3>
+        <h3><a href="/admin">admin page</a></h3>
+
+        <form th:action="@{/admin/update-book}" method="post" th:object="${book}">
+            <label for="book_id" hidden>id:
+                <input id="book_id" type="hidden" name="book_id" th:value="${book.book_id}" required>
+            </label>
+
+            <label for="book_code">code:
+                <input id="book_code" type="text" name="book_code" th:value="${book.book_code}" required>
+            </label>
+
+            <label for="book_author" hidden>author:
+                <input id="book_author" type="hidden" name="book_author" th:value="${book.book_author.id}" required>
+            </label>
+
+            <label for="book_title">title:
+                <input id="book_title" type="text" name="book_title" th:value="${book.book_title}" required>
+            </label>
+
+            <label for="book_publisher">publisher:
+                <input id="book_publisher" type="text" name="book_publisher" th:value="${book.book_publisher}" required>
+            </label>
+
+            <label for="book_description">description:
+                <input id="book_description" type="text" name="book_description" th:value="${book.book_description}" required>
+            </label>
+
+            <button type="submit">update</button>
+        </form>
+    </div>
+</main>
+
+<aside>
+    <!-- optional sidebar content, such as advertisements or related content -->
+</aside>
+
+<footer>
+    <!-- footer content, such as copyright information or site links -->
+</footer>
+</body>
+</html>

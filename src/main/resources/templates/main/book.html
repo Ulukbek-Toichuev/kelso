@@ -52,12 +52,26 @@
                 <p th:text="${metadata.price}"></p>
                 <p th:text="${metadata.pageCount}"></p>
                 <p th:text="${metadata.readingAge}"></p>
+                <span th:if="${role == 'ROLE_ADMIN'}">
+                    <a th:href="@{/admin/update-metadata/{id}(id=${metadata.metadataId})}">update</a>
+                </span>
             </span>
             <span th:if="${metadata == null}">NULL</span>
         </div>
 
+        <div class="pictures">
+            <span th:if="${photos != null}">
+                <div class="picture" th:each="picture: ${photos}">
+                    <p th:text="${picture.photoUrl}"></p>
+                    <span th:if="${role == 'ROLE_ADMIN'}">
+                        <a th:href="@{/admin/update-photo/{id}(id=${picture.photo_id})}">update photo</a>
+                    </span>
+                </div>
+            </span>
+        </div>
+
         <span th:if="${role == 'ROLE_ADMIN'}">
-            <a href="/update/{id}">update book</a>
+            <a th:href="@{/admin}">update book</a>
         </span>
 
     </div>

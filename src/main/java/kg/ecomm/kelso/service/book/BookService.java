@@ -51,6 +51,8 @@ public class BookService <T>{
         return photoRepository.findAll();
     }
 
+    public List<Photo> getAllPhotosByBookId(long id){return photoRepository.findPhotosByBookId(id);}
+
     public void save(T value){
         String className = value.getClass().getSimpleName();
 

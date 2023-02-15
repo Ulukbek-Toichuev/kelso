@@ -95,14 +95,6 @@ public class AdminController {
         return "redirect:/admin/add";
     }
 
-    @GetMapping("/book/{id}")
-    public String updateBook(@PathVariable("id") long id, Model model){
-
-
-
-        return null;
-    }
-
     @GetMapping("/delete-book/{id}")
     public String deleteBook(@PathVariable("id") long id){
 
@@ -150,5 +142,66 @@ public class AdminController {
 
         return "redirect:/admin";
     }
+
+    @GetMapping("/update-book/{id}")
+    public String updateBookPage(@PathVariable("id") long id, Model model){
+        model.addAttribute("book", bookService.getBookById(id));
+        return "admin_space/update/book";
+    }
+
+    @PostMapping("/update-book")
+    public String updateBook(@ModelAttribute("book") Book book){
+        bookService.save(book);
+        return "redirect:/admin";
+    }
+
+    @GetMapping("/update-metadata/{id}")
+    public String updateMetadataPage(@PathVariable("id") long id, Model model){
+        model.addAttribute("metadata", bookService.getMetadataById(id));
+        return "admin_space/update/metadata";
+    }
+
+    @PostMapping("/update-metadata")
+    public String updateMetadata(@ModelAttribute("metadata") Metadata metadata){
+        bookService.save(metadata);
+        return "redirect:/admin";
+    }
+
+    @GetMapping("/update-category/{id}")
+    public String updateCategoryPage(@PathVariable("id") long id, Model model){
+        model.addAttribute("category", bookService.getCategoryById(id));
+        return "admin_space/update/category";
+    }
+
+    @PostMapping("/update-category")
+    public String updateCategory(@ModelAttribute("category") Category category){
+        bookService.save(category);
+        return "redirect:/admin";
+    }
+
+    @GetMapping("/update-photo/{id}")
+    public String updatePhotoPage(@PathVariable("id") long id, Model model){
+        model.addAttribute("photo", bookService.getPhotoById(id));
+        return "admin_space/update/photo";
+    }
+
+    @PostMapping("/update-photo")
+    public String updatePhoto(@ModelAttribute("photo") Photo photo){
+        bookService.save(photo);
+        return "redirect:/admin";
+    }
+
+    @GetMapping("/update-author/{id}")
+    public String updateAuthorPage(@PathVariable("id") long id, Model model){
+        model.addAttribute("author", bookService.getAuthorById(id));
+        return "admin_space/update/author";
+    }
+
+    @PostMapping("/update-author")
+    public String updateAuthor(@ModelAttribute("author") Author author){
+        bookService.save(author);
+        return "redirect:/admin";
+    }
+
 
 }
