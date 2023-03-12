@@ -35,6 +35,7 @@ public class SecurityConfig {
 
                         .antMatchers("/login").permitAll()
                         .antMatchers("/register").permitAll()
+                        .antMatchers("/style/**").permitAll()
 
                         //.antMatchers("/user/**").hasAnyRole("USER", "ADMIN")
                         .antMatchers("/user/**").hasRole("USER")

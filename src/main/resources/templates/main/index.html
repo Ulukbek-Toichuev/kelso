@@ -2,25 +2,15 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" th:href="@{/style/index.css}" />
     <title>Kelso</title>
 </head>
 <body>
-<header>
-    <!-- header content, such as logo and navigation menu -->
-</header>
+<header th:replace="header.html"></header>
 
 <main>
-    <div th:if="${role == 'ROLE_ADMIN'}">
-        <p>GOVNO</p>
-    </div>
-    <div class="container">
-        <a href="/admin">to admin page</a>
-        <a href="/user">to user page</a>
-        <a href="/register">registration</a>
-        <a href="/login">login</a>
-    </div>
 
-    <div class="container">
+    <div class="list_of_product">
         <hr>
         <h3>List of books</h3>
         <table>
@@ -61,16 +51,12 @@
         </table>
     </div>
 
-    <a href="/logout">logout</a>
-
 </main>
 
 <aside>
     <!-- optional sidebar content, such as advertisements or related content -->
 </aside>
 
-<footer>
-    <!-- footer content, such as copyright information or site links -->
-</footer>
+<footer th:replace="footer.html"></footer>
 </body>
 </html>

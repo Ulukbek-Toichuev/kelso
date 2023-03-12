@@ -18,8 +18,8 @@ public class BookMiddleware {
                 .toString(ThreadLocalRandom
                         .current().nextInt(100000, 999999));
         List<String> allBookCode = bookRepository.findAllCode();
-        for (int i = 0; i < allBookCode.size(); i++){
-            if (randomStr.equals(allBookCode.get(i))){
+        for (String s : allBookCode) {
+            if (randomStr.equals(s)) {
                 return getNewBookCode();
             }
         }

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Website</title>
+  <link rel="stylesheet" th:href="@{/style/header.css}">
+</head>
+<body>
+<header class="header-container">
+  <div class="navigation-menu">
+    <nav>
+      <ul>
+        <li><a href="/">Main</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><a href="/login">Sign in</a></li>
+        <li><a href="/register">Register</a></li>
+        <li th:if="${role == 'ROLE_ADMIN'}">
+          <a href="/admin">Admin page</a>
+        </li>
+        <li th:if="${role == 'ROLE_USER'}">
+          <a href="/admin">User page</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <div class="headers_logo">
+    <img th:src="@{/style/kelos_logo.png}" alt="Logo">
+  </div>
+</header>
+</body>
+</html>
